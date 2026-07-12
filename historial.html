@@ -171,7 +171,8 @@ footer{margin-top:32px;padding-top:12px;border-top:1px solid var(--line);
    Mobile-first: una columna apilada; a >=640px, tres columnas comparables. */
 .fam{margin:22px 0}
 .duel{display:grid;grid-template-columns:1fr;gap:10px}
-@media (min-width:640px){.duel{grid-template-columns:1fr 1fr 1fr;align-items:start}}
+@media (min-width:640px){.duel{grid-template-columns:1fr 1fr 1fr;align-items:start}
+  .duel.two{grid-template-columns:1fr 1fr}}
 .col{min-width:0}
 .colh{font-family:var(--font-display);font-weight:700;font-size:.95rem;
   text-transform:uppercase;letter-spacing:.04em;color:var(--muted);
