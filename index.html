@@ -170,34 +170,39 @@ footer{margin-top:32px;padding-top:12px;border-top:1px solid var(--line);
 /* Layout de DUELO por familia: local | partido | visitante en la misma escala.
    Mobile-first: una columna apilada; a >=640px, tres columnas comparables. */
 .fam{margin:22px 0}
-.duel{display:grid;grid-template-columns:1fr;gap:10px}
-@media (min-width:640px){.duel{grid-template-columns:1fr 1fr 1fr;align-items:start}
-  .duel.two{grid-template-columns:1fr 1fr}}
-.col{min-width:0}
+/* Cabecera del duelo (A | B) una sola vez por familia; las filas se alinean debajo. */
+.dhead{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}
 .colh{font-family:var(--font-display);font-weight:700;font-size:.95rem;
   text-transform:uppercase;letter-spacing:.04em;color:var(--muted);
-  padding:2px 2px 6px;border-bottom:1px solid var(--line);margin-bottom:8px}
-.col.empty .dash{color:var(--muted);opacity:.5;padding:8px 2px;font-size:1.2rem}
-.col .market{margin:0 0 10px}
-/* DOS números con etiqueta llana: "compensa a partir de" (acción) manda; "cuota
-   justa" es secundaria. Jerarquía D66 intacta: ambos salen de la p calibrada. */
-.nums{display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:right}
-.n-min b{font-family:var(--font-display);font-size:var(--fs-3);font-weight:700;
-  color:var(--accent);line-height:1}
-.n-min small,.n-fair small{display:block;font-size:.58rem;color:var(--muted);
-  font-weight:600;text-transform:uppercase;letter-spacing:.04em}
-.n-fair b{font-family:var(--font-display);font-size:1.15rem;font-weight:600;
-  color:var(--text);line-height:1}
-.mlabel{font-weight:600}
-.explain{font-size:.78rem;color:var(--muted);margin:8px 0 6px;line-height:1.4}
-/* "Comprueba tu casa": comparador de cuotas (solo con JS; sin JS = solo números) */
+  padding:2px 2px 6px;border-bottom:1px solid var(--line);min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Fila-mercado ALINEADA: dos celdas comparables, misma línea a izquierda y derecha.
+   Se mantienen 2 columnas incluso en móvil para NO perder la comparación. */
+.drow{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:stretch;
+  margin-bottom:10px}
+.fam.wide .market{margin:0 0 10px}
+.market.form{border-left-color:var(--muted);opacity:.9}
+.market.ghost{border-left-color:var(--line);opacity:.55}
+/* Tarjeta compacta: etiqueta, cuota de acción, RACHA (gráfico) y "tu cuota". */
+.clabel{font-weight:600;font-size:.92rem;line-height:1.25;margin-bottom:6px}
+.cnum b{font-family:var(--font-display);font-size:1.7rem;font-weight:700;
+  color:var(--accent);line-height:1;margin-right:6px}
+.cnum small{font-size:.6rem;color:var(--muted);font-weight:600;
+  text-transform:uppercase;letter-spacing:.03em}
+.cnum.muted b,.cnum .faironly{font-family:var(--font-display);font-size:1.15rem;
+  font-weight:700;color:var(--text)}
+.formrow{display:flex;align-items:center;gap:8px;margin:8px 0 6px}
+.ftag{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.cmeta{font-size:.74rem;color:var(--muted);margin-top:6px}
+/* "Comprueba tu casa": comparador (solo con JS; sin JS = la cuota de acción sola) */
 .cmp{display:none;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0 2px}
 .js .cmp{display:flex}
-.cmp-l{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--muted)}
-.cmp-i{width:92px;min-height:40px;border-radius:8px;border:1px solid var(--line);
+.cmp-i{width:100%;min-height:40px;border-radius:8px;border:1px solid var(--line);
   background:var(--card2);color:var(--text);padding:0 10px;font-size:1rem;
   font-variant-numeric:tabular-nums}
-.verdict{font-size:.82rem;font-weight:700;padding:4px 10px;border-radius:8px}
+.verdict{font-size:.78rem;font-weight:700;padding:4px 8px;border-radius:8px;
+  width:100%}
+.verdict:empty{display:none}
 .verdict[data-state="over"]{background:#12321F;color:var(--win)}
 .verdict[data-state="mid"]{background:#3A2410;color:var(--accent2)}
 .verdict[data-state="under"]{background:var(--card2);color:var(--muted)}
