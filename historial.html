@@ -185,12 +185,16 @@ footer{margin-top:32px;padding-top:12px;border-top:1px solid var(--line);
 .market.ghost{border-left-color:var(--line);opacity:.55}
 /* Tarjeta compacta: etiqueta, cuota de acción, RACHA (gráfico) y "tu cuota". */
 .clabel{font-weight:600;font-size:.92rem;line-height:1.25;margin-bottom:6px}
-.cnum b{font-family:var(--font-display);font-size:1.7rem;font-weight:700;
-  color:var(--accent);line-height:1;margin-right:6px}
-.cnum small{font-size:.6rem;color:var(--muted);font-weight:600;
-  text-transform:uppercase;letter-spacing:.03em}
-.cnum.muted b,.cnum .faironly{font-family:var(--font-display);font-size:1.15rem;
-  font-weight:700;color:var(--text)}
+/* DOS números con etiqueta EXPLÍCITA: "compensa a partir de" es la de acción
+   (grande, naranja); "cuota justa" va debajo, rotulada y secundaria. */
+.cnum{margin-bottom:2px}
+.nlab{display:block;font-size:.62rem;color:var(--muted);font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em}
+.cnum b.big{font-family:var(--font-display);font-size:1.9rem;font-weight:700;
+  color:var(--accent);line-height:1.05;display:block}
+.cnum.muted b.big{color:var(--text)}
+.fairline{display:block;font-size:.76rem;color:var(--muted);margin-top:3px}
+.fairline .num{color:var(--text);font-weight:700}
 .formrow{display:flex;align-items:center;gap:8px;margin:8px 0 6px}
 .ftag{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .cmeta{font-size:.74rem;color:var(--muted);margin-top:6px}
