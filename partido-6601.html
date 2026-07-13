@@ -167,7 +167,58 @@ footer{margin-top:32px;padding-top:12px;border-top:1px solid var(--line);
 .void-badge{display:inline-block;margin:6px 0;padding:2px 8px;border-radius:10px;
   background:rgba(180,83,9,.14);color:#b45309;font-size:.82rem;font-weight:600}
 :root[data-theme="dark"] .void-badge{color:#fbbf24;background:rgba(251,191,36,.12)}
-</style></head><body><header class='topbar'><a class='brand' href='index.html'><svg width='22' height='22' viewBox='0 0 28 28' aria-hidden='true'><path d='M2 25V18l5-2v9z' fill='#2A2A31'/><path d='M10 25V13l5-2v14z' fill='#9BA0A8'/><path d='M18 25V8l5-2v19z' fill='#FF7A00'/></svg><span>Lost Streaks</span></a><nav><a href='index.html' aria-current='page'>Partidos</a><a href='historial.html'>Historial</a><a href='metodologia.html'>Metodología</a></nav></header><div class='hero'><svg class='bg' viewBox='0 0 1200 320' preserveAspectRatio='xMidYMid slice' aria-hidden='true'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#0A0A0C'/><stop offset='0.72' stop-color='#131013'/><stop offset='1' stop-color='#2A1505'/></linearGradient></defs><rect width='1200' height='320' fill='url(#g)'/><line x1='40' y1='340' x2='190' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='130' y1='340' x2='280' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='220' y1='340' x2='370' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='310' y1='340' x2='460' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='400' y1='340' x2='550' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='490' y1='340' x2='640' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='580' y1='340' x2='730' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='670' y1='340' x2='820' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='760' y1='340' x2='910' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='850' y1='340' x2='1000' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='940' y1='340' x2='1090' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='1030' y1='340' x2='1180' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='1120' y1='340' x2='1270' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><polygon points='1200,320 780,320 1030,-40 1200,-40' fill='#FF7A00' fill-opacity='0.07'/><polygon points='1200,320 1000,320 1180,60 1200,60' fill='#FF7A00' fill-opacity='0.10'/></svg><div class='in'><div class='score'><div class='team'><div class='mono' style='background:hsl(72 45% 32%)'>BB</div>Bate Borisov</div><div><div class='meta' style='text-align:center'>jueves 16/07/2026, 19:00<br>Madrid · Conference League</div><div style='text-align:center;margin-top:8px'><span class='status previa'>previa</span></div></div><div class='team'><div class='mono' style='background:hsl(246 45% 32%)'>AE</div>AF Elbasani</div></div></div></div><main><p class='meta'>Cuota límite: según nuestros datos, solo compensa por encima de ella.</p><div class='filters'></div><div class='filters'></div><p class='meta'>Sin mercados con contenido para este partido.</p><p class='meta'>Generado: 2026-07-12 07:06 UTC</p><footer><p>+18. Juega con responsabilidad. Las cuotas límite son informativas, no consejo financiero ni recomendación de apuesta. <a href='metodologia.html'>Metodología</a>: cómo calculamos los límites y cómo de calibrados van (criterio D30); todo lo emitido queda en el <a href='historial.html'>historial completo</a>, sin selección posterior. El CLV que aparece en entradas antiguas es una métrica histórica del piloto (derivado agregado, donde hubo cierre de referencia).</p></footer></main>
+/* Layout de DUELO por familia: local | partido | visitante en la misma escala.
+   Mobile-first: una columna apilada; a >=640px, tres columnas comparables. */
+.fam{margin:22px 0}
+/* Cabecera del duelo (A | B) una sola vez por familia; las filas se alinean debajo. */
+.dhead{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}
+.colh{font-family:var(--font-display);font-weight:700;font-size:.95rem;
+  text-transform:uppercase;letter-spacing:.04em;color:var(--muted);
+  padding:2px 2px 6px;border-bottom:1px solid var(--line);min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Fila-mercado ALINEADA: dos celdas comparables, misma línea a izquierda y derecha.
+   Se mantienen 2 columnas incluso en móvil para NO perder la comparación. */
+.drow{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:stretch;
+  margin-bottom:10px}
+.fam.wide .market{margin:0 0 10px}
+.market.form{border-left-color:var(--muted);opacity:.9}
+.market.ghost{border-left-color:var(--line);opacity:.55}
+/* Tarjeta compacta: etiqueta, cuota de acción, RACHA (gráfico) y "tu cuota". */
+.clabel{font-weight:600;font-size:.92rem;line-height:1.25;margin-bottom:6px}
+/* DOS números con etiqueta EXPLÍCITA: "compensa a partir de" es la de acción
+   (grande, naranja); "cuota justa" va debajo, rotulada y secundaria. */
+.cnum{margin-bottom:2px}
+.nlab{display:block;font-size:.62rem;color:var(--muted);font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em}
+.cnum b.big{font-family:var(--font-display);font-size:1.9rem;font-weight:700;
+  color:var(--accent);line-height:1.05;display:block}
+.cnum.muted b.big{color:var(--text)}
+.fairline{display:block;font-size:.76rem;color:var(--muted);margin-top:3px}
+.fairline .num{color:var(--text);font-weight:700}
+.formrow{display:flex;align-items:center;gap:8px;margin:8px 0 6px}
+.ftag{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.cmeta{font-size:.74rem;color:var(--muted);margin-top:6px}
+/* "Comprueba tu casa": comparador (solo con JS; sin JS = la cuota de acción sola) */
+.cmp{display:none;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0 2px}
+.js .cmp{display:flex}
+.cmp-i{width:100%;min-height:40px;border-radius:8px;border:1px solid var(--line);
+  background:var(--card2);color:var(--text);padding:0 10px;font-size:1rem;
+  font-variant-numeric:tabular-nums}
+.verdict{font-size:.78rem;font-weight:700;padding:4px 8px;border-radius:8px;
+  width:100%}
+.verdict:empty{display:none}
+.verdict[data-state="over"]{background:#12321F;color:var(--win)}
+.verdict[data-state="mid"]{background:#3A2410;color:var(--accent2)}
+.verdict[data-state="under"]{background:var(--card2);color:var(--muted)}
+/* toggles nativos (sin JS): "ver el otro lado" y "+N líneas más" */
+details.other,details.more{margin:8px 0 0}
+details.other>summary,details.more>summary{cursor:pointer;font-size:.78rem;
+  color:var(--muted);min-height:32px;display:inline-flex;align-items:center}
+details.other>summary:hover,details.more>summary:hover{color:var(--accent)}
+.otherbox{font-size:.82rem;color:var(--muted);margin:6px 0 2px;padding:8px 10px;
+  border:1px dashed var(--line);border-radius:8px}
+.otherbox .num{color:var(--text);font-weight:600}
+</style></head><body><header class='topbar'><a class='brand' href='index.html'><svg width='22' height='22' viewBox='0 0 28 28' aria-hidden='true'><path d='M2 25V18l5-2v9z' fill='#2A2A31'/><path d='M10 25V13l5-2v14z' fill='#9BA0A8'/><path d='M18 25V8l5-2v19z' fill='#FF7A00'/></svg><span>Lost Streaks</span></a><nav><a href='index.html' aria-current='page'>Partidos</a><a href='historial.html'>Historial</a><a href='metodologia.html'>Metodología</a></nav></header><div class='hero'><svg class='bg' viewBox='0 0 1200 320' preserveAspectRatio='xMidYMid slice' aria-hidden='true'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#0A0A0C'/><stop offset='0.72' stop-color='#131013'/><stop offset='1' stop-color='#2A1505'/></linearGradient></defs><rect width='1200' height='320' fill='url(#g)'/><line x1='40' y1='340' x2='190' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='130' y1='340' x2='280' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='220' y1='340' x2='370' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='310' y1='340' x2='460' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='400' y1='340' x2='550' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='490' y1='340' x2='640' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='580' y1='340' x2='730' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='670' y1='340' x2='820' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='760' y1='340' x2='910' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='850' y1='340' x2='1000' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='940' y1='340' x2='1090' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='1030' y1='340' x2='1180' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='1120' y1='340' x2='1270' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><polygon points='1200,320 780,320 1030,-40 1200,-40' fill='#FF7A00' fill-opacity='0.07'/><polygon points='1200,320 1000,320 1180,60 1200,60' fill='#FF7A00' fill-opacity='0.10'/></svg><div class='in'><div class='score'><div class='team'><div class='mono' style='background:hsl(72 45% 32%)'>BB</div>Bate Borisov</div><div><div class='meta' style='text-align:center'>jueves 16/07/2026, 19:00<br>Madrid · Conference League</div><div style='text-align:center;margin-top:8px'><span class='status previa'>previa</span></div></div><div class='team'><div class='mono' style='background:hsl(246 45% 32%)'>AE</div>AF Elbasani</div></div></div></div><main><p class='meta'>Cada tarjeta trae la <b>cuota justa según nuestros datos</b> y la cuota a partir de la cual <b>compensa</b>: si tu casa la ofrece por encima de ella, compensa según nuestros datos; por debajo, no. Teclea la tuya y te lo decimos — no decimos a qué apostar ni enlazamos a ninguna casa. La racha se muestra como contexto (no predice la probabilidad).</p><div class='filters'></div><div class='filters'></div><p class='meta'>Sin mercados con contenido para este partido.</p><p class='meta'>Generado: 2026-07-13 07:06 UTC</p><footer><p>+18. Juega con responsabilidad. Las cuotas límite son informativas, no consejo financiero ni recomendación de apuesta. <a href='metodologia.html'>Metodología</a>: cómo calculamos los límites y cómo de calibrados van (criterio D30); todo lo emitido queda en el <a href='historial.html'>historial completo</a>, sin selección posterior. El CLV que aparece en entradas antiguas es una métrica histórica del piloto (derivado agregado, donde hubo cierre de referencia).</p></footer></main>
 <script>
 (function(){
   'use strict';
@@ -220,6 +271,31 @@ footer{margin-top:32px;padding-top:12px;border-top:1px solid var(--line);
       apply();
     });
   }
+  // "Comprueba tu casa": calculadora sobre el límite YA publicado (no cambia el
+  // pricing). Tres estados: por encima del límite = compensa; entre justa y límite
+  // = zona de margen; por debajo de la justa = no compensa. Sin casas, sin enlaces.
+  document.querySelectorAll('[data-compare]').forEach(function(box){
+    var card = box.closest('[data-card]');
+    var input = box.querySelector('.cmp-i');
+    var out = box.querySelector('[data-verdict]');
+    if (!card || !input || !out) return;
+    var fair = parseFloat(card.dataset.be), min = parseFloat(card.dataset.min);
+    input.addEventListener('input', function(){
+      var v = parseFloat(input.value.replace(',', '.'));
+      if (!isFinite(v) || v <= 1){ out.textContent = ''; out.removeAttribute('data-state'); return; }
+      if (v >= min){
+        var margin = Math.round((v / fair - 1) * 1000) / 10;
+        out.setAttribute('data-state', 'over');
+        out.textContent = 'compensa según nuestros datos · margen +' + margin.toFixed(1) + '%';
+      } else if (v >= fair){
+        out.setAttribute('data-state', 'mid');
+        out.textContent = 'en zona de margen (aún no compensa)';
+      } else {
+        out.setAttribute('data-state', 'under');
+        out.textContent = 'no compensa según nuestros datos';
+      }
+    });
+  });
 })();
 </script>
 </body></html>
