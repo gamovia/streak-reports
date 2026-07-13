@@ -201,9 +201,11 @@ footer{margin-top:32px;padding-top:12px;border-top:1px solid var(--line);
 /* "Comprueba tu casa": comparador (solo con JS; sin JS = la cuota de acción sola) */
 .cmp{display:none;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0 2px}
 .js .cmp{display:flex}
-.cmp-i{width:100%;min-height:40px;border-radius:8px;border:1px solid var(--line);
+.cmp-i,.cmp-line{min-height:40px;border-radius:8px;border:1px solid var(--line);
   background:var(--card2);color:var(--text);padding:0 10px;font-size:1rem;
   font-variant-numeric:tabular-nums}
+.cmp-i{width:100%}
+.cmp-line{width:5.5em;flex:none}  /* D70/B: la línea de tu casa (over/under) */
 .verdict{font-size:.78rem;font-weight:700;padding:4px 8px;border-radius:8px;
   width:100%}
 .verdict:empty{display:none}
@@ -211,6 +213,13 @@ footer{margin-top:32px;padding-top:12px;border-top:1px solid var(--line);
 .verdict[data-state="mid"]{background:#3A2410;color:var(--accent2)}
 .verdict[data-state="under"]{background:var(--card2);color:var(--muted)}
 /* toggles nativos (sin JS): "ver el otro lado" y "+N líneas más" */
+/* página de entidad (D70) */
+.ehead{display:flex;align-items:center;gap:14px;margin:8px 0 4px}
+.ehead h1{margin:0;font-size:1.5rem}
+.elink{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--muted)}
+.elink:hover{color:var(--accent);border-bottom-color:var(--accent)}
+/* H2H (D70/C): contexto compacto, dos columnas */
+.hblock.h2h .hline{grid-template-columns:1fr auto}
 details.other,details.more{margin:8px 0 0}
 details.other>summary,details.more>summary{cursor:pointer;font-size:.78rem;
   color:var(--muted);min-height:32px;display:inline-flex;align-items:center}
