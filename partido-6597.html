@@ -201,9 +201,11 @@ footer{margin-top:32px;padding-top:12px;border-top:1px solid var(--line);
 /* "Comprueba tu casa": comparador (solo con JS; sin JS = la cuota de acción sola) */
 .cmp{display:none;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0 2px}
 .js .cmp{display:flex}
-.cmp-i{width:100%;min-height:40px;border-radius:8px;border:1px solid var(--line);
+.cmp-i,.cmp-line{min-height:40px;border-radius:8px;border:1px solid var(--line);
   background:var(--card2);color:var(--text);padding:0 10px;font-size:1rem;
   font-variant-numeric:tabular-nums}
+.cmp-i{width:100%}
+.cmp-line{width:5.5em;flex:none}  /* D70/B: la línea de tu casa (over/under) */
 .verdict{font-size:.78rem;font-weight:700;padding:4px 8px;border-radius:8px;
   width:100%}
 .verdict:empty{display:none}
@@ -211,6 +213,13 @@ footer{margin-top:32px;padding-top:12px;border-top:1px solid var(--line);
 .verdict[data-state="mid"]{background:#3A2410;color:var(--accent2)}
 .verdict[data-state="under"]{background:var(--card2);color:var(--muted)}
 /* toggles nativos (sin JS): "ver el otro lado" y "+N líneas más" */
+/* página de entidad (D70) */
+.ehead{display:flex;align-items:center;gap:14px;margin:8px 0 4px}
+.ehead h1{margin:0;font-size:1.5rem}
+.elink{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--muted)}
+.elink:hover{color:var(--accent);border-bottom-color:var(--accent)}
+/* H2H (D70/C): contexto compacto, dos columnas */
+.hblock.h2h .hline{grid-template-columns:1fr auto}
 details.other,details.more{margin:8px 0 0}
 details.other>summary,details.more>summary{cursor:pointer;font-size:.78rem;
   color:var(--muted);min-height:32px;display:inline-flex;align-items:center}
@@ -218,7 +227,7 @@ details.other>summary:hover,details.more>summary:hover{color:var(--accent)}
 .otherbox{font-size:.82rem;color:var(--muted);margin:6px 0 2px;padding:8px 10px;
   border:1px dashed var(--line);border-radius:8px}
 .otherbox .num{color:var(--text);font-weight:600}
-</style></head><body><header class='topbar'><a class='brand' href='index.html'><svg width='22' height='22' viewBox='0 0 28 28' aria-hidden='true'><path d='M2 25V18l5-2v9z' fill='#2A2A31'/><path d='M10 25V13l5-2v14z' fill='#9BA0A8'/><path d='M18 25V8l5-2v19z' fill='#FF7A00'/></svg><span>Lost Streaks</span></a><nav><a href='index.html' aria-current='page'>Partidos</a><a href='historial.html'>Historial</a><a href='metodologia.html'>Metodología</a></nav></header><div class='hero'><svg class='bg' viewBox='0 0 1200 320' preserveAspectRatio='xMidYMid slice' aria-hidden='true'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#0A0A0C'/><stop offset='0.72' stop-color='#131013'/><stop offset='1' stop-color='#2A1505'/></linearGradient></defs><rect width='1200' height='320' fill='url(#g)'/><line x1='40' y1='340' x2='190' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='130' y1='340' x2='280' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='220' y1='340' x2='370' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='310' y1='340' x2='460' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='400' y1='340' x2='550' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='490' y1='340' x2='640' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='580' y1='340' x2='730' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='670' y1='340' x2='820' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='760' y1='340' x2='910' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='850' y1='340' x2='1000' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='940' y1='340' x2='1090' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='1030' y1='340' x2='1180' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='1120' y1='340' x2='1270' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><polygon points='1200,320 780,320 1030,-40 1200,-40' fill='#FF7A00' fill-opacity='0.07'/><polygon points='1200,320 1000,320 1180,60 1200,60' fill='#FF7A00' fill-opacity='0.10'/></svg><div class='in'><div class='score'><div class='team'><div class='mono' style='background:hsl(155 45% 32%)'>I</div>Ilves</div><div><div class='meta' style='text-align:center'>jueves 16/07/2026, 18:00<br>Madrid · Conference League</div><div style='text-align:center;margin-top:8px'><span class='status previa'>previa</span></div></div><div class='team'><div class='mono' style='background:hsl(323 45% 32%)'>FD</div>FC Differdange 03</div></div></div></div><main><p class='meta'>Cada tarjeta trae la <b>cuota justa según nuestros datos</b> y la cuota a partir de la cual <b>compensa</b>: si tu casa la ofrece por encima de ella, compensa según nuestros datos; por debajo, no. Teclea la tuya y te lo decimos — no decimos a qué apostar ni enlazamos a ninguna casa. La racha se muestra como contexto (no predice la probabilidad).</p><div class='filters'></div><div class='filters'></div><p class='meta'>Sin mercados con contenido para este partido.</p><p class='meta'>Generado: 2026-07-13 07:06 UTC</p><footer><p>+18. Juega con responsabilidad. Las cuotas límite son informativas, no consejo financiero ni recomendación de apuesta. <a href='metodologia.html'>Metodología</a>: cómo calculamos los límites y cómo de calibrados van (criterio D30); todo lo emitido queda en el <a href='historial.html'>historial completo</a>, sin selección posterior. El CLV que aparece en entradas antiguas es una métrica histórica del piloto (derivado agregado, donde hubo cierre de referencia).</p></footer></main>
+</style></head><body><header class='topbar'><a class='brand' href='index.html'><svg width='22' height='22' viewBox='0 0 28 28' aria-hidden='true'><path d='M2 25V18l5-2v9z' fill='#2A2A31'/><path d='M10 25V13l5-2v14z' fill='#9BA0A8'/><path d='M18 25V8l5-2v19z' fill='#FF7A00'/></svg><span>Lost Streaks</span></a><nav><a href='index.html' aria-current='page'>Partidos</a><a href='historial.html'>Historial</a><a href='metodologia.html'>Metodología</a></nav></header><div class='hero'><svg class='bg' viewBox='0 0 1200 320' preserveAspectRatio='xMidYMid slice' aria-hidden='true'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#0A0A0C'/><stop offset='0.72' stop-color='#131013'/><stop offset='1' stop-color='#2A1505'/></linearGradient></defs><rect width='1200' height='320' fill='url(#g)'/><line x1='40' y1='340' x2='190' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='130' y1='340' x2='280' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='220' y1='340' x2='370' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='310' y1='340' x2='460' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='400' y1='340' x2='550' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='490' y1='340' x2='640' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='580' y1='340' x2='730' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='670' y1='340' x2='820' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='760' y1='340' x2='910' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='850' y1='340' x2='1000' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='940' y1='340' x2='1090' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='1030' y1='340' x2='1180' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><line x1='1120' y1='340' x2='1270' y2='-20' stroke='#FF7A00' stroke-opacity='0.05' stroke-width='2'/><polygon points='1200,320 780,320 1030,-40 1200,-40' fill='#FF7A00' fill-opacity='0.07'/><polygon points='1200,320 1000,320 1180,60 1200,60' fill='#FF7A00' fill-opacity='0.10'/></svg><div class='in'><div class='score'><div class='team'><div class='mono' style='background:hsl(155 45% 32%)'>I</div>Ilves</div><div><div class='meta' style='text-align:center'>jueves 16/07/2026, 18:00<br>Madrid · Conference League</div><div style='text-align:center;margin-top:8px'><span class='status previa'>previa</span></div></div><div class='team'><div class='mono' style='background:hsl(323 45% 32%)'>FD</div>FC Differdange 03</div></div></div></div><main><p class='meta'>Cada tarjeta trae la <b>cuota justa según nuestros datos</b> y la cuota a partir de la cual <b>compensa</b>: si tu casa la ofrece por encima de ella, compensa según nuestros datos; por debajo, no. Teclea la tuya y te lo decimos — no decimos a qué apostar ni enlazamos a ninguna casa. La racha se muestra como contexto (no predice la probabilidad).</p><div class='filters'></div><div class='filters'></div><section class='fam' data-section><h2 class='kicker'>Enfrentamientos directos</h2><p class='meta'>Historial directo entre ambos; es contexto, <b>no entra en el cálculo</b> (como la racha).</p><div class='hblock h2h'><div class='hline'><div>08/07/26 · FC Differdange 03 <b>0–0</b> Ilves</div><div class='r meta'>goles 0 · córners 0 · tarjetas 0</div></div></div></section><p class='meta'>Sin mercados con contenido para este partido.</p><p class='meta'>Generado: 2026-07-14 07:06 UTC</p><footer><p>+18. Juega con responsabilidad. Las cuotas límite son informativas, no consejo financiero ni recomendación de apuesta. <a href='metodologia.html'>Metodología</a>: cómo calculamos los límites y cómo de calibrados van (criterio D30); todo lo emitido queda en el <a href='historial.html'>historial completo</a>, sin selección posterior. El CLV que aparece en entradas antiguas es una métrica histórica del piloto (derivado agregado, donde hubo cierre de referencia).</p></footer></main>
 <script>
 (function(){
   'use strict';
@@ -274,27 +283,63 @@ details.other>summary:hover,details.more>summary:hover{color:var(--accent)}
   // "Comprueba tu casa": calculadora sobre el límite YA publicado (no cambia el
   // pricing). Tres estados: por encima del límite = compensa; entre justa y límite
   // = zona de margen; por debajo de la justa = no compensa. Sin casas, sin enlaces.
+  // D70/B: si el mercado over/under trae CDF y el usuario cambia la LÍNEA, la p se
+  // ESTIMA por interpolación de la distribución histórica (etiquetado, y solo
+  // dentro del rango de líneas con datos).
+  function interp(cdf, L){
+    if (L < cdf[0][0] || L > cdf[cdf.length-1][0]) return null;  // fuera de soporte
+    for (var i=0;i<cdf.length-1;i++){
+      var a=cdf[i], b=cdf[i+1];
+      if (L>=a[0] && L<=b[0]){
+        var t = (b[0]===a[0]) ? 0 : (L-a[0])/(b[0]-a[0]);
+        return {p: a[1]+t*(b[1]-a[1]),
+                edge: (Math.abs(L-a[0])<=Math.abs(L-b[0]) ? a[2] : b[2])};
+      }
+    }
+    return null;
+  }
   document.querySelectorAll('[data-compare]').forEach(function(box){
     var card = box.closest('[data-card]');
-    var input = box.querySelector('.cmp-i');
+    var odds = box.querySelector('.cmp-i');
+    var lineIn = box.querySelector('.cmp-line');
     var out = box.querySelector('[data-verdict]');
-    if (!card || !input || !out) return;
-    var fair = parseFloat(card.dataset.be), min = parseFloat(card.dataset.min);
-    input.addEventListener('input', function(){
-      var v = parseFloat(input.value.replace(',', '.'));
-      if (!isFinite(v) || v <= 1){ out.textContent = ''; out.removeAttribute('data-state'); return; }
-      if (v >= min){
-        var margin = Math.round((v / fair - 1) * 1000) / 10;
-        out.setAttribute('data-state', 'over');
-        out.textContent = 'compensa según nuestros datos · margen +' + margin.toFixed(1) + '%';
-      } else if (v >= fair){
-        out.setAttribute('data-state', 'mid');
-        out.textContent = 'en zona de margen (aún no compensa)';
-      } else {
-        out.setAttribute('data-state', 'under');
-        out.textContent = 'no compensa según nuestros datos';
+    if (!card || !odds || !out) return;
+    var pubBe = parseFloat(card.dataset.be), pubMin = parseFloat(card.dataset.min);
+    var pubLine = card.dataset.line ? parseFloat(card.dataset.line) : null;
+    var side = card.dataset.side;
+    var sec = card.closest('[data-cdf]');
+    var cdf = null; try { cdf = sec ? JSON.parse(sec.dataset.cdf) : null; } catch(e){}
+    function render(){
+      var v = parseFloat((odds.value||'').replace(',', '.'));
+      if (!isFinite(v) || v <= 1){ out.textContent=''; out.removeAttribute('data-state'); return; }
+      var be=pubBe, min=pubMin, est=false;
+      if (lineIn && cdf && pubLine!==null){
+        var L = parseFloat((lineIn.value||'').replace(',', '.'));
+        if (isFinite(L) && L!==pubLine){
+          var r = interp(cdf, L);
+          if (!r){ out.setAttribute('data-state','under');
+                   out.textContent='sin datos suficientes para esa línea'; return; }
+          var p = side==='over' ? r.p : 1-r.p;
+          if (p<=0.02 || p>=0.98){ out.setAttribute('data-state','under');
+                   out.textContent='sin datos suficientes para esa línea'; return; }
+          be = 1/p; min = (1+r.edge)/p; est=true;
+        }
       }
-    });
+      var tag = est ? ' · estimación por interpolación (línea distinta a la publicada)' : '';
+      if (v >= min){
+        var margin = Math.round((v/be-1)*1000)/10;
+        out.setAttribute('data-state','over');
+        out.textContent = 'compensa según nuestros datos · margen +'+margin.toFixed(1)+'%'+tag;
+      } else if (v >= be){
+        out.setAttribute('data-state','mid');
+        out.textContent = 'en zona de margen (aún no compensa)'+tag;
+      } else {
+        out.setAttribute('data-state','under');
+        out.textContent = 'no compensa según nuestros datos'+tag;
+      }
+    }
+    odds.addEventListener('input', render);
+    if (lineIn) lineIn.addEventListener('input', render);
   });
 })();
 </script>
