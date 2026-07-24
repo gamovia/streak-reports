@@ -1,0 +1,230 @@
+<!doctype html><html lang='es'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>Malisheva · Lost Streaks</title><meta name='description' content='Malisheva: ritmo por familia, límites emitidos e historial en Lost Streaks.'><meta property='og:title' content='Malisheva · Lost Streaks'><meta property='og:description' content='Malisheva: ritmo por familia, límites emitidos e historial en Lost Streaks.'><meta property='og:type' content='website'><meta property='og:site_name' content='Lost Streaks'><link rel='icon' href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A0A0C'/%3E%3Cpath d='M12 52V36l10-4v20z' fill='%232A2A31'/%3E%3Cpath d='M27 52V27l10-4v29z' fill='%239BA0A8'/%3E%3Cpath d='M42 52V17l10-4v39z' fill='%23FF7A00'/%3E%3C/svg%3E"><link rel='preload' href='fonts/barlow-condensed-700.woff2' as='font' type='font/woff2' crossorigin><link rel='preload' href='fonts/inter-var.woff2' as='font' type='font/woff2' crossorigin><style>
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;
+  font-display:swap;src:url('fonts/barlow-condensed-600.woff2') format('woff2')}
+@font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:700;
+  font-display:swap;src:url('fonts/barlow-condensed-700.woff2') format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;
+  font-display:swap;src:url('fonts/inter-var.woff2') format('woff2')}
+:root{color-scheme:dark;
+  --bg:#0A0A0C;--card:#141417;--card2:#1D1D22;--line:#2A2A31;
+  --text:#F2F2F4;--muted:#9BA0A8;
+  --accent:#FF7A00;--accent2:#FF9A40;--on-accent:#1A0D00;
+  --win:#34D07C;--loss:#FF6166;
+  --r:10px;--fs-0:.8rem;--fs-2:1.15rem;--fs-3:1.9rem;
+  --font-display:'Barlow Condensed','Arial Narrow',system-ui,sans-serif;
+  --font-text:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 6px 18px rgba(0,0,0,.35)}
+*{box-sizing:border-box}
+body{font-family:var(--font-text);margin:0;background:var(--bg);
+  color:var(--text);font-size:15px;line-height:1.5}
+main{max-width:780px;margin:0 auto;padding:4px 12px 24px}
+a{color:var(--accent);transition:color 120ms}
+a:hover{color:var(--accent2)}
+a:focus-visible,.chip:focus-visible,.search:focus-visible{
+  outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3,.display{font-family:var(--font-display);letter-spacing:.01em}
+h1{font-size:1.6rem;margin:.25rem 0;text-transform:uppercase}
+h2{font-size:var(--fs-2);margin:28px 0 12px}
+h3{font-size:1.05rem;margin:16px 0 4px}
+.kicker{font-size:.95rem;color:var(--muted);text-transform:uppercase;
+  letter-spacing:.1em;margin:28px 0 10px;font-weight:600}
+.meta{color:var(--muted);font-size:.84rem}
+.num{font-variant-numeric:tabular-nums}
+.stamp{display:inline-block;font-size:var(--fs-0);color:var(--muted);
+  border:1px solid var(--line);border-radius:6px;padding:2px 8px}
+/* barra de marca fija */
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;padding:10px 16px;
+  background:rgba(10,10,12,.94);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:8px;text-decoration:none;
+  color:var(--text);font-family:var(--font-display);font-weight:700;
+  font-size:1.05rem;letter-spacing:.06em;text-transform:uppercase}
+.brand:hover{color:var(--text)}
+.brand svg{flex:none}
+.topbar nav{display:flex;gap:4px}
+.topbar nav a{font-family:var(--font-display);font-weight:600;font-size:.95rem;
+  text-transform:uppercase;letter-spacing:.05em;color:var(--muted);
+  text-decoration:none;padding:10px 10px;border-radius:6px;min-height:44px;
+  display:flex;align-items:center}
+.topbar nav a:hover{color:var(--text)}
+.topbar nav a[aria-current]{color:var(--accent)}
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero .bg{position:absolute;inset:0;width:100%;height:100%}
+.hero .in{position:relative;max-width:780px;margin:0 auto;padding:36px 12px 20px}
+.hero h1{font-size:clamp(1.9rem,6vw,2.9rem);line-height:1.05;margin:6px 0}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:10px;margin:20px 0 4px}
+.kpi{background:var(--card);border:1px solid var(--line);
+  border-left:3px solid var(--accent);border-radius:var(--r);
+  box-shadow:var(--shadow);padding:10px 14px}
+.kpi b{display:block;font-family:var(--font-display);font-size:var(--fs-3);
+  font-weight:700;line-height:1.1}
+.kpi span{font-size:var(--fs-0);color:var(--muted)}
+/* grid de partidos */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:12px;margin:12px 0}
+.mcard{display:block;background:var(--card);border:1px solid var(--line);
+  border-left:3px solid var(--accent);border-radius:var(--r);
+  box-shadow:var(--shadow);padding:12px;color:var(--text);text-decoration:none;
+  transition:border-color 120ms,transform 120ms}
+.mcard:hover{border-left-color:var(--accent2);border-color:var(--accent2);
+  transform:translateY(-2px);color:var(--text)}
+.mcard .teams{display:flex;align-items:center;gap:8px;margin:6px 0;
+  font-family:var(--font-display);font-weight:600;font-size:1.1rem}
+.mcard .row{display:flex;justify-content:space-between;align-items:center}
+.status{font-size:.72rem;border-radius:6px;padding:3px 8px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em}
+.status.previa{background:#3A2410;color:var(--accent2)}
+.status.liquidado{background:#12321F;color:var(--win)}
+.status.enjuego{background:#3A2410;color:var(--accent2)}
+/* cabecera-marcador (hero de partido) */
+.score{display:flex;align-items:center;justify-content:center;gap:20px;
+  padding:28px 12px}
+.score .team{display:flex;flex-direction:column;align-items:center;gap:8px;
+  min-width:110px;text-align:center;font-family:var(--font-display);
+  font-weight:700;font-size:1.35rem;line-height:1.1;text-transform:uppercase}
+.mono{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-weight:800;font-size:1.1rem;color:#fff;flex:none;
+  font-family:var(--font-display)}
+.mono.sm{width:32px;height:32px;font-size:.8rem}
+/* tarjetas de mercado: la CUOTA LÍMITE domina */
+.market{background:var(--card);border:1px solid var(--line);
+  border-left:3px solid var(--accent);border-radius:var(--r);
+  box-shadow:var(--shadow);padding:12px;margin:12px 0;
+  transition:border-color 120ms}
+.market:hover{border-left-color:var(--accent2)}
+.market .top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+/* grupo por JUGADOR dentro de la sección de props (D58): un bloque claro por
+   jugador con su cabecera; sus mercados anidados y con menos margen. */
+.pgroup{border:1px solid var(--line);border-radius:var(--r);margin:14px 0;
+  overflow:hidden;background:var(--card2)}
+.pgroup>header{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;
+  padding:10px 14px;border-bottom:1px solid var(--line)}
+.pgroup>header .pname{font-family:var(--font-display);font-weight:700;
+  font-size:1.15rem;text-transform:uppercase}
+.pgroup>header .prole{font-size:.74rem;color:var(--muted);
+  border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+.pgroup .market{margin:8px 12px;background:var(--card)}
+.limit{font-family:var(--font-display);font-size:var(--fs-3);font-weight:700;
+  color:var(--accent);line-height:1}
+.limit small{display:block;font-family:var(--font-text);font-size:.6rem;
+  color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.badge{display:inline-block;font-size:.72rem;background:var(--card2);
+  border:1px solid var(--line);border-radius:6px;padding:2px 7px;
+  color:var(--muted);margin-top:4px}
+.evidence{font-size:.8rem;color:var(--muted);margin:8px 0 2px}
+.hit-yes{color:var(--win);font-weight:700}
+.hit-no{color:var(--loss);font-weight:700}
+.clv-pos{color:var(--win)}.clv-neg{color:var(--loss)}
+/* historial agrupado por partido */
+.hblock{background:var(--card);border:1px solid var(--line);
+  border-left:3px solid var(--accent);border-radius:var(--r);
+  box-shadow:var(--shadow);padding:0;margin:12px 0;overflow:hidden}
+.hblock>header{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;
+  padding:10px 14px;background:var(--card2);border-bottom:1px solid var(--line)}
+.hblock>header a{font-family:var(--font-display);font-weight:600;
+  font-size:1.05rem;text-decoration:none;text-transform:uppercase}
+.hblock>header a:hover{text-decoration:underline}
+.hline{display:grid;grid-template-columns:1fr 64px 84px 76px;gap:8px;
+  align-items:center;padding:8px 14px;border-top:1px solid var(--line);
+  font-size:.86rem}
+.hline:first-of-type{border-top:none}
+.hline:nth-of-type(even){background:rgba(255,255,255,.02)}
+.hline .r{text-align:right}
+.pill{display:inline-block;font-size:.74rem;border-radius:6px;padding:2px 8px;
+  font-weight:700;text-align:center}
+.pill.yes{background:#12321F;color:var(--win)}
+.pill.no{background:#3B1518;color:var(--loss)}
+.pill.void{background:var(--card2);color:var(--muted)}
+.sep{display:flex;align-items:center;gap:12px;color:var(--muted);
+  font-size:var(--fs-0);margin:20px 0}
+.sep::before,.sep::after{content:'';flex:1;border-top:1px solid var(--line)}
+@media (max-width:520px){
+  .hline{grid-template-columns:1fr auto;grid-auto-flow:row}
+  .hline .r{text-align:left}
+  .topbar nav a{padding:10px 6px;font-size:.85rem}
+}
+/* filtros (solo con JS; área táctil >=44px) */
+.filters{display:none;flex-wrap:wrap;gap:8px;margin:12px 0}
+.js .filters{display:flex}
+.chip{min-height:44px;padding:10px 14px;border-radius:22px;border:1px solid var(--line);
+  background:var(--card);color:var(--text);font-size:.85rem;cursor:pointer;
+  transition:border-color 120ms}
+.chip:hover{border-color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);
+  font-weight:700}
+.search{min-height:44px;flex:1 1 160px;border-radius:22px;border:1px solid var(--line);
+  background:var(--card);color:var(--text);padding:0 14px;font-size:.9rem}
+[hidden]{display:none!important}
+footer{margin-top:32px;padding-top:12px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:.78rem}
+.spark,.bar,.calib{vertical-align:middle;max-width:100%}
+/* R1: la racha es contexto secundario, no la base de la p (auditoría D66) */
+.streak-ctx{opacity:.5;font-size:.82rem;margin-top:6px}
+/* R4: la anulación es información crítica y visible (auditoría D66) */
+.void-badge{display:inline-block;margin:6px 0;padding:2px 8px;border-radius:10px;
+  background:rgba(180,83,9,.14);color:#b45309;font-size:.82rem;font-weight:600}
+:root[data-theme="dark"] .void-badge{color:#fbbf24;background:rgba(251,191,36,.12)}
+/* Layout de DUELO por familia: local | partido | visitante en la misma escala.
+   Mobile-first: una columna apilada; a >=640px, tres columnas comparables. */
+.fam{margin:22px 0}
+/* Cabecera del duelo (A | B) una sola vez por familia; las filas se alinean debajo. */
+.dhead{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}
+.colh{font-family:var(--font-display);font-weight:700;font-size:.95rem;
+  text-transform:uppercase;letter-spacing:.04em;color:var(--muted);
+  padding:2px 2px 6px;border-bottom:1px solid var(--line);min-width:0;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Fila-mercado ALINEADA: dos celdas comparables, misma línea a izquierda y derecha.
+   Se mantienen 2 columnas incluso en móvil para NO perder la comparación. */
+.drow{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:stretch;
+  margin-bottom:10px}
+.fam.wide .market{margin:0 0 10px}
+.market.form{border-left-color:var(--muted);opacity:.9}
+.market.ghost{border-left-color:var(--line);opacity:.55}
+/* Tarjeta compacta: etiqueta, cuota de acción, RACHA (gráfico) y "tu cuota". */
+.clabel{font-weight:600;font-size:.92rem;line-height:1.25;margin-bottom:6px}
+/* DOS números con etiqueta EXPLÍCITA: "compensa a partir de" es la de acción
+   (grande, naranja); "cuota justa" va debajo, rotulada y secundaria. */
+.cnum{margin-bottom:2px}
+.nlab{display:block;font-size:.62rem;color:var(--muted);font-weight:700;
+  text-transform:uppercase;letter-spacing:.04em}
+.cnum b.big{font-family:var(--font-display);font-size:1.9rem;font-weight:700;
+  color:var(--accent);line-height:1.05;display:block}
+.cnum.muted b.big{color:var(--text)}
+.fairline{display:block;font-size:.76rem;color:var(--muted);margin-top:3px}
+.fairline .num{color:var(--text);font-weight:700}
+.formrow{display:flex;align-items:center;gap:8px;margin:8px 0 6px}
+.ftag{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.cmeta{font-size:.74rem;color:var(--muted);margin-top:6px}
+/* "Comprueba tu casa": comparador (solo con JS; sin JS = la cuota de acción sola) */
+.cmp{display:none;flex-wrap:wrap;align-items:center;gap:8px;margin:6px 0 2px}
+.js .cmp{display:flex}
+.cmp-i,.cmp-line{min-height:40px;border-radius:8px;border:1px solid var(--line);
+  background:var(--card2);color:var(--text);padding:0 10px;font-size:1rem;
+  font-variant-numeric:tabular-nums}
+.cmp-i{width:100%}
+.cmp-line{width:5.5em;flex:none}  /* D70/B: la línea de tu casa (over/under) */
+.verdict{font-size:.78rem;font-weight:700;padding:4px 8px;border-radius:8px;
+  width:100%}
+.verdict:empty{display:none}
+.verdict[data-state="over"]{background:#12321F;color:var(--win)}
+.verdict[data-state="mid"]{background:#3A2410;color:var(--accent2)}
+.verdict[data-state="under"]{background:var(--card2);color:var(--muted)}
+/* toggles nativos (sin JS): "ver el otro lado" y "+N líneas más" */
+/* página de entidad (D70) */
+.ehead{display:flex;align-items:center;gap:14px;margin:8px 0 4px}
+.ehead h1{margin:0;font-size:1.5rem}
+.elink{color:var(--text);text-decoration:none;border-bottom:1px dotted var(--muted)}
+.elink:hover{color:var(--accent);border-bottom-color:var(--accent)}
+/* H2H (D70/C): contexto compacto, dos columnas */
+.hblock.h2h .hline{grid-template-columns:1fr auto}
+details.other,details.more{margin:8px 0 0}
+details.other>summary,details.more>summary{cursor:pointer;font-size:.78rem;
+  color:var(--muted);min-height:32px;display:inline-flex;align-items:center}
+details.other>summary:hover,details.more>summary:hover{color:var(--accent)}
+.otherbox{font-size:.82rem;color:var(--muted);margin:6px 0 2px;padding:8px 10px;
+  border:1px dashed var(--line);border-radius:8px}
+.otherbox .num{color:var(--text);font-weight:600}
+</style></head><body><header class='topbar'><a class='brand' href='index.html'><svg width='22' height='22' viewBox='0 0 28 28' aria-hidden='true'><path d='M2 25V18l5-2v9z' fill='#2A2A31'/><path d='M10 25V13l5-2v14z' fill='#9BA0A8'/><path d='M18 25V8l5-2v19z' fill='#FF7A00'/></svg><span>Lost Streaks</span></a><nav><a href='index.html'>Tendencias</a><a href='cheatsheets.html'>Cheatsheets</a><a href='panel.html'>Partidos</a><a href='historial.html'>Historial</a><a href='metodologia.html'>Metodología</a></nav></header><main><header class='ehead'><div class='mono' style='background:hsl(202 45% 32%)'>M</div><div><h1>Malisheva</h1><p class='meta'>Conference League</p></div></header><p class='meta'>Datos <b>descriptivos</b> a fecha de generación; ninguna cifra de aquí es un precio. La cuota límite de cada mercado vive en la página de su partido.</p><h2 class='kicker'>Ritmo por familia — prior vs forma reciente</h2><p class='meta'>La forma reciente es contexto: la medimos y no predice por encima del ritmo base (SIGNAL_REPORT).</p><div class='market'><div class='clabel'>Goles <span class='meta'>· Más de 1.5 goles</span></div><svg class="bar" width="200" height="26" viewBox="0 0 200 26" role="img" aria-label="prior 72%, forma reciente 100%"><rect x="6" y="16" width="188" height="6" rx="3" fill="#2A2A31"/><g><title>forma 100%</title><line x1="194.0" y1="11" x2="194.0" y2="23" stroke="#9BA0A8" stroke-width="3"/><text x="198.0" y="9" font-size="8.5" fill="#9BA0A8" text-anchor="start">forma 100%</text></g><g><title>base 72%</title><line x1="141.6" y1="11" x2="141.6" y2="23" stroke="#FF7A00" stroke-width="3"/><text x="137.6" y="9" font-size="8.5" fill="#FF7A00" text-anchor="end">base 72%</text></g></svg><div class='cmeta'>prior 72% · forma 100% · n=3</div></div><div class='market'><div class='clabel'>Tarjetas <span class='meta'>· Menos de 2.5 tarjetas</span></div><svg class="bar" width="200" height="26" viewBox="0 0 200 26" role="img" aria-label="prior 87%, forma reciente 100%"><rect x="6" y="16" width="188" height="6" rx="3" fill="#2A2A31"/><g><title>forma 100%</title><line x1="194.0" y1="11" x2="194.0" y2="23" stroke="#9BA0A8" stroke-width="3"/><text x="198.0" y="9" font-size="8.5" fill="#9BA0A8" text-anchor="start">forma 100%</text></g><g><title>base 87%</title><line x1="169.5" y1="11" x2="169.5" y2="23" stroke="#FF7A00" stroke-width="3"/><text x="165.5" y="9" font-size="8.5" fill="#FF7A00" text-anchor="end">base 87%</text></g></svg><div class='cmeta'>prior 87% · forma 100% · n=3</div></div><h2 class='kicker'>Límites emitidos (extracto)</h2><div class='hblock'><div class='hline'><div>30/07/26 · Hibernian<br><span class='meta'>Más de 1.5 goles</span></div><div class='r num'>1.44</div><div class='r'><span class='pill void'>pendiente</span></div><div class='r num'><span class='meta'>—</span></div></div><div class='hline'><div>30/07/26 · Hibernian<br><span class='meta'>Menos de 2.5 tarjetas</span></div><div class='r num'>1.20</div><div class='r'><span class='pill void'>pendiente</span></div><div class='r num'><span class='meta'>—</span></div></div><div class='hline'><div>30/07/26 · Hibernian<br><span class='meta'>Menos de 4.5 tarjetas</span></div><div class='r num'>1.07</div><div class='r'><span class='pill void'>pendiente</span></div><div class='r num'><span class='meta'>—</span></div></div></div><p class='meta'><a href='historial.html'>Historial completo</a> — todo lo emitido, sin selección posterior (D31).</p><h2 class='kicker'>Próximos partidos</h2><div class='grid'><a class='mcard' href='partido-463268.html'><div class='teams'>Hibernian – Malisheva</div><div class='meta'>Thu 30/07 21:00 (Madrid)</div></a></div><p class='meta'>Generado: 2026-07-24 07:11 UTC</p><footer><p>+18. Juega con responsabilidad. Las cuotas límite son informativas, no consejo financiero ni recomendación de apuesta. <a href='metodologia.html'>Metodología</a>: cómo calculamos los límites y cómo de calibrados van (criterio D30); todo lo emitido queda en el <a href='historial.html'>historial completo</a>, sin selección posterior. El CLV que aparece en entradas antiguas es una métrica histórica del piloto (derivado agregado, donde hubo cierre de referencia).</p></footer></main></body></html>
